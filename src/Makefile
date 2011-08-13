@@ -9,7 +9,7 @@ OBJECTS=$(SOURCES:.cpp=.o)
 all: compile
 
 compile:
-	g++ $(CFLAGS) $(INCLUDES) $(LDFLAGS) *.c *.cpp -o prog
+	g++ $(CFLAGS) $(INCLUDES) $(LIBDIRS) $(LDFLAGS) *.c *.cpp -o prog
 
 clean:
 	rm prog
