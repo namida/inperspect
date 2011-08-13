@@ -1,2 +1,2 @@
 #!/bin/bash
-LD_PRELOAD="/usr/local/lib/fakenect/libfreenect.so" FAKENECT_PATH="../kinectcap" ./prog 
+LD_PRELOAD="/usr/local/lib/fakenect/libfreenect.so" FAKENECT_PATH="../kinectcap" ./prog $1

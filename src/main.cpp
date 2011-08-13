@@ -4,6 +4,8 @@
 #include <vector>
 #include <GL/freeglut.h>
 
+#include <stdio.h>
+
 // OpenCV stuff
 #include <cv.h>
 #include <highgui.h>
@@ -11,33 +13,67 @@
 #include "libfreenect_cv.h"
 #include "libfreenect_sync.h"
 
-void lighten(IplImage *img) {
-	for (int i = 0; i < img->imageSize / 2; i++) {
-		((uint16_t*)img->imageData)[i] *= 32;
+#include "scene.h"
+#include "renderer.h"
+
+#define TILT_MAX 45
+#define TILT_MIN -45
+
+Scene *scene;
+Renderer * renderer;
+
+void display() {
+	scene->build();
+	renderer->render();
+}
+
+void doTilt(int);
+void doAbsTilt(int);
+void handleKey(unsigned char key, int x, int y) {
+	switch (key) {
+		case 'w': doTilt(5); break;
+		case 's': doAbsTilt(0); break;
+		case 'x': doTilt(-5); break;
+		case 27: doAbsTilt(0); exit(0);
 	}
 }
 
-int main() {
-	cvNamedWindow("depth", 0);
-	cvNamedWindow("rgb", 0);
+int _tilt = 0;
+void doAbsTilt(int tilt) {
+	_tilt = MAX(MIN(tilt, TILT_MAX), TILT_MIN);
+	freenect_sync_set_tilt_degs(_tilt, 0);
+}
 
-	int key;
-	int tilt = 0;
-	while ((key = cvWaitKey(10)) != 27) {
-		switch (key) {
-			case 'w': tilt = MIN(45, tilt + 5); break;
-			case 'x': tilt = MAX(-45, tilt - 5); break;
-			case 's': tilt = 0;
-		}
-		freenect_sync_set_tilt_degs(tilt, 0);
+void doTilt(int delta) {
+	doAbsTilt(_tilt + delta);
+}
 
-		IplImage *rgb = freenect_sync_get_rgb_cv(0);
-		cvCvtColor(rgb, rgb, CV_RGB2BGR);
-		IplImage *depth = freenect_sync_get_depth_cv(0);
-		lighten(depth);
+int main(int argc, char **argv) {
+	scene = new Scene;
+	glutInit(&argc, argv);
 
-		cvShowImage("rgb", rgb);
-		cvShowImage("depth", depth);
+	bool gl = true;
+	if (argc > 1 && strcmp(argv[1], "--opencv") == 0) {
+		gl = false;
 	}
-	freenect_sync_set_tilt_degs(0, 0);
+
+	if (!gl) {
+		while (true) {
+			handleKey(cvWaitKey(10), 0, 0);
+			scene->build();
+		}
+	} else {
+		glutInitDisplayMode (GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
+		glutInitWindowSize (500, 500); 
+		glutInitWindowPosition (100, 100);
+		glutCreateWindow (argv[0]);
+		glutDisplayFunc(display); 
+		glutIdleFunc(display);
+		renderer = new Renderer;
+		//glutReshapeFunc(reshape);
+		glutKeyboardFunc(handleKey);
+		// This is the special thing for this lesson
+		// We tell Glut to call our function every time he can
+		glutMainLoop();
+	}
 }
