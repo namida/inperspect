@@ -1,3 +1,9 @@
+#include <string>
+#include <iostream>
+#include <iomanip>
+#include <vector>
+#include <GL/freeglut.h>
+
 // OpenCV stuff
 #include <cv.h>
 #include <highgui.h>
