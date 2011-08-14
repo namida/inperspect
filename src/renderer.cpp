@@ -26,6 +26,11 @@ void Renderer::render(void)
 ypoz+=0.5;
 if (ypoz>360) ypoz=0;
 
+Point points[10];
+for(int i=0;i<10;i++){
+	points[i] = Point(i,i,i);
+}
+
 glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 glLoadIdentity ();
 
@@ -41,13 +46,13 @@ glRotatef(zpoz,0,0,1);
 // I'm going to draw something simple here as we haven't yet discussed loading models
 glColor3f(1,0,0);
 glBegin(GL_TRIANGLES);
-	glVertex3f(0,2,0);
-	glVertex3f(3,0,0);
-	glVertex3f(-3,0,0);
+	glVertex3f(0,0.2,0);
+	glVertex3f(0.2,0,0);
+	glVertex3f(-0.2,0,0);
 	glColor3f(0,1,0);
-	glVertex3f(0,1,0);
-	glVertex3f(0,0,3);
-	glVertex3f(0,0,-3);
+	glVertex3f(0,0.3,0);
+	glVertex3f(0,0,0.2);
+	glVertex3f(0,0,-0.2);
 glEnd();
 
 // I sugest you test how it runs without this sleep too. Obviously it will be faster but that's not the reason it's here

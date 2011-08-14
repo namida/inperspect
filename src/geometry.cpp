@@ -20,6 +20,10 @@ Point::Point(float newX,float newY,float newZ) : x(newX), y(newY),z(newZ) {
 	
 	
 }
+Point::Point() {
+	
+	
+}
 Point::Point(int x, int y, int d) {
 	double ywidth = XWIDTH * YRES / XRES;
 
