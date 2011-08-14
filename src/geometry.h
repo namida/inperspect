@@ -15,8 +15,9 @@ class Point {
 
 class Vector {
 	public:
-		float distanceX,distanceY,distanceZ;
+		float x,y,z;
 		Vector(float newDistanceX,float newDistanceY,float newDistanceZ);	
+		void normalize();
 };
 
 class ColorPoint : public Point {
