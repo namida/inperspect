@@ -1,6 +1,8 @@
 #include "geometry.h"
 #include "common.h"
 
+#include <stdio.h>
+
 #define DIST 5
 #define XWIDTH 5.4
 
@@ -25,7 +27,7 @@ Point::Point(int x, int y, int d) {
 
 	this->x = ((XWIDTH * x) / (XRES - 1)) - (XWIDTH / 2);
 	this->y = ((ywidth * y) / (YRES - 1)) - (ywidth / 2);
-	this->z = DepthMap::toDepth(d);
+	this->z = ((float) d) * 5.0f / 2048;
 }
 
 Point::Point() : x(0), y(0), z(0) {
