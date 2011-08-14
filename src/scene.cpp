@@ -48,7 +48,7 @@ void Scene::build() {
 			points[j][i] = ColorPoint(j, i, d,
 					(float)color.b / 255, (float)color.g / 255, (float)color.r / 255);
 
-			if (d < 2048) {
+			if (d < 2047) {
 				cloud.push_back(&points[j][i]);
 			}
 		}
