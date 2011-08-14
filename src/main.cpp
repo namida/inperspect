@@ -15,6 +15,7 @@
 
 #include "scene.h"
 #include "renderer.h"
+#include "geometry.h"
 
 #define TILT_MAX 45
 #define TILT_MIN -45

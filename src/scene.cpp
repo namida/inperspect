@@ -2,6 +2,7 @@
 #include "libfreenect_cv.h"
 #include <cv.h>
 #include <highgui.h>
+#include "geometry.h"
 
 void lighten(IplImage *img) {
 	for (int i = 0; i < img->imageSize / 2; i++) {

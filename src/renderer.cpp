@@ -3,11 +3,12 @@
 
 
 #include "renderer.h"
+#include "geometry.h"
 
 
 Renderer::Renderer() : ypoz(0), zpoz(0) {
 	
-	glClearColor (0.0, 0.0, 0.0, 0.0); 
+	
 	glEnable(GL_DEPTH_TEST);
 	glShadeModel (GL_SMOOTH);
 	
@@ -40,9 +41,13 @@ glRotatef(zpoz,0,0,1);
 // I'm going to draw something simple here as we haven't yet discussed loading models
 glColor3f(1,0,0);
 glBegin(GL_TRIANGLES);
-glVertex3f(0,2,0);
-glVertex3f(3,0,0);
-glVertex3f(-3,0,0);
+	glVertex3f(0,2,0);
+	glVertex3f(3,0,0);
+	glVertex3f(-3,0,0);
+	glColor3f(0,1,0);
+	glVertex3f(0,1,0);
+	glVertex3f(0,0,3);
+	glVertex3f(0,0,-3);
 glEnd();
 
 // I sugest you test how it runs without this sleep too. Obviously it will be faster but that's not the reason it's here

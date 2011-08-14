@@ -1,10 +1,15 @@
 class Point {
 	public:
 		float x, y, z;
-		Point();
+		Point(float newX,float newY,float newZ);
 };
-class ColorPoint:Point {
+class ColorPoint:public Point {
 	public:
 		float r,g,b;
-		ColorPoint();
+		ColorPoint(float newX,float newY,float newZ,float newR, float newG, float newB);
+};
+class Vector {
+	public:
+		float distanceX,distanceY,distanceZ;
+		Vector(float newDistanceX,float newDistanceY,float newDistanceZ);
 };
