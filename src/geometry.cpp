@@ -8,6 +8,7 @@
 ColorPoint::ColorPoint(float newX,float newY,float newZ, float newR, float newG, float newB):Point(newX, newY,newZ),r(newR), g(newG),b(newB) {
 
 }
+
 ColorPoint::ColorPoint(int x, int y, int d, float r, float g, float b): Point(x, y, d), r(r), g(g), b(b) {
 }
 
