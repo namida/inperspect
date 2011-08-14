@@ -60,8 +60,8 @@ int main(int argc, char **argv) {
 	}
 
 	if (!gl) {
-		scene->fetchImage();
 		while (true) {
+			scene->fetchImage();
 			handleKey(cvWaitKey(10), 0, 0);
 			scene->build();
 		}

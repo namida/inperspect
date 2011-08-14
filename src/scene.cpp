@@ -28,11 +28,16 @@ void Scene::fetchImage() {
 	rgb = freenect_sync_get_rgb_cv(0);
 	cvCvtColor(rgb, rgb, CV_RGB2BGR);
 	depth = freenect_sync_get_depth_cv(0);
+	if (lightDepth == NULL) {
+		lightDepth = cvCloneImage(depth);
+	}
+	cvCopy(depth, lightDepth);
+	lighten(lightDepth);
 }
 
 void Scene::build() {
 	cvShowImage("rgb", rgb);
-	cvShowImage("depth", depth);
+	cvShowImage("depth", lightDepth);
 
 	cloud.clear();
 

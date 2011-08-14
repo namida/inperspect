@@ -10,6 +10,7 @@ class Scene {
 	private:
 		IplImage *rgb;
 		IplImage *depth;
+		IplImage *lightDepth;
 		double depthMap[2048];
 	public:
 		ColorPoint points[XRES][YRES];
