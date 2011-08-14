@@ -1,9 +1,10 @@
-#include "geometry.h"
-#include "scene.h"
 #include "libfreenect_cv.h"
 #include <cv.h>
 #include <highgui.h>
+
+#include "scene.h"
 #include "geometry.h"
+#include "common.h"
 
 #include <stdio.h>
 
@@ -33,4 +34,21 @@ void Scene::fetchImage() {
 void Scene::build() {
 	cvShowImage("rgb", rgb);
 	cvShowImage("depth", depth);
+
+	cloud.clear();
+
+	for (int i = 0; i < YRES; i++) {
+		for (int j = 0; j < XRES; j++) {
+			Rgb color = ((Rgb*)rgb->imageData)[i * 640 + j];
+			points[j][i] = ColorPoint(j, i, ((uint16_t*)depth->imageData)[i * 640 + j],
+					(float)color.r / 255, (float)color.g / 255, (float)color.b / 255);
+		}
+	}
+
+	for (int i = 0; i < XRES; i++) {
+		for (int j = 0; j < YRES; j++) {
+			cloud.push_back(&points[i][j]);
+		}
+	}
 }
+

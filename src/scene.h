@@ -1,6 +1,7 @@
 #include <vector>
 #include <cv.h>
 
+#include "common.h"
 #include "geometry.h"
 
 class Scene {
@@ -8,7 +9,7 @@ class Scene {
 		IplImage *rgb;
 		IplImage *depth;
 	public:
-		ColorPoint points[640][480];
+		ColorPoint points[XRES][YRES];
 		std::vector<Point*> cloud;
 
 		Scene();
