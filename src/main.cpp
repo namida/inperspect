@@ -51,6 +51,10 @@ void doTilt(int delta) {
 }
 
 int main(int argc, char **argv) {
+	DepthMap::doInit();
+	for (int i = 0; i < 2048; i++) {
+		printf("%f\t", DepthMap::toDepth(i));
+	}
 	scene = new Scene;
 	glutInit(&argc, argv);
 

@@ -40,9 +40,9 @@ Vector::Vector(float newDistanceX,float newDistanceY,float newDistanceZ)
 float DepthMap::cache[2048];
 bool DepthMap::init = false;
 
-float DepthMap::doInit() {
+void DepthMap::doInit() {
 	for (int i = 0; i < DEPTH_RES; i++) {
-		cache[i] = k3 * tanf(((float)i) / k2 + k1);
+		cache[i] = k3 * tanf(((float)i) / k2 / 2 + k1);
 	}
 }
 
@@ -50,4 +50,5 @@ float DepthMap::toDepth(int d) {
 	if (!init) {
 		doInit();
 	}
+	return cache[d];
 }

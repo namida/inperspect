@@ -35,7 +35,7 @@ class DepthMap {
 		static const float k2 = 2842.5;
 		static const float k3 = 0.1236;
 	public:
-		static float doInit();
+		static void doInit();
 		static float toDepth(int d);
 };
 #endif
