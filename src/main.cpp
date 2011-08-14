@@ -23,6 +23,7 @@ Scene *scene;
 Renderer * renderer;
 
 void display() {
+	scene->fetchImage();
 	scene->build();
 	renderer->render();
 }
