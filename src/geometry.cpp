@@ -1,9 +1,8 @@
 #include "geometry.h"
-#define DIST 5
-#define XRES 640
-#define YRES 480
-#define XWIDTH 5.4
+#include "common.h"
 
+#define DIST 5
+#define XWIDTH 5.4
 
 ColorPoint::ColorPoint(float newX,float newY,float newZ, float newR, float newG, float newB)
 	: Point(newX, newY,newZ),r(newR), g(newG),b(newB) {
