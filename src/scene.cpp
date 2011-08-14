@@ -28,7 +28,6 @@ void Scene::fetchImage() {
 	rgb = freenect_sync_get_rgb_cv(0);
 	cvCvtColor(rgb, rgb, CV_RGB2BGR);
 	depth = freenect_sync_get_depth_cv(0);
-	lighten(depth);
 }
 
 void Scene::build() {
@@ -40,8 +39,9 @@ void Scene::build() {
 	for (int i = 0; i < YRES; i++) {
 		for (int j = 0; j < XRES; j++) {
 			Rgb color = ((Rgb*)rgb->imageData)[i * 640 + j];
-			points[j][i] = ColorPoint(j, i, ((uint16_t*)depth->imageData)[i * 640 + j],
-					(float)color.r / 255, (float)color.g / 255, (float)color.b / 255);
+			uint16_t d = ((uint16_t*)depth->imageData)[i * 640 + j];
+			points[j][i] = ColorPoint(j, i, d,
+					(float)color.b / 255, (float)color.g / 255, (float)color.r / 255);
 		}
 	}
 

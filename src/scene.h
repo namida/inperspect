@@ -8,6 +8,7 @@ class Scene {
 	private:
 		IplImage *rgb;
 		IplImage *depth;
+		double depthMap[2048];
 	public:
 		ColorPoint points[XRES][YRES];
 		std::vector<Point*> cloud;
