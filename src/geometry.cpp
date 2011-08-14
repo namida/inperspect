@@ -49,6 +49,7 @@ void DepthMap::doInit() {
 float DepthMap::toDepth(int d) {
 	if (!init) {
 		doInit();
+		init = true;
 	}
 	return cache[d];
 }
