@@ -25,7 +25,7 @@ Point::Point(int x, int y, int d) {
 
 	this->x = ((XWIDTH * x) / (XRES - 1)) - (XWIDTH / 2);
 	this->y = ((ywidth * y) / (YRES - 1)) - (ywidth / 2);
-	this->z = DIST;
+	this->z = DepthMap::toDepth(d);
 }
 
 Point::Point() : x(0), y(0), z(0) {
