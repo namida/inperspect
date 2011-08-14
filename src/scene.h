@@ -1,3 +1,5 @@
+#ifndef _SCENE_H
+#define _SCENE_H
 #include <vector>
 #include <cv.h>
 
@@ -11,9 +13,11 @@ class Scene {
 		double depthMap[2048];
 	public:
 		ColorPoint points[XRES][YRES];
-		std::vector<Point*> cloud;
+		std::vector<ColorPoint*> cloud;
 
 		Scene();
 		void fetchImage();
 		void build();
 };
+#endif
+
