@@ -42,12 +42,10 @@ void Scene::build() {
 			uint16_t d = ((uint16_t*)depth->imageData)[i * 640 + j];
 			points[j][i] = ColorPoint(j, i, d,
 					(float)color.b / 255, (float)color.g / 255, (float)color.r / 255);
-		}
-	}
 
-	for (int i = 0; i < XRES; i++) {
-		for (int j = 0; j < YRES; j++) {
-			cloud.push_back(&points[i][j]);
+			if (d < 2048) {
+				cloud.push_back(&points[j][i]);
+			}
 		}
 	}
 }
