@@ -26,7 +26,7 @@ Renderer * renderer;
 void display() {
 	scene->fetchImage();
 	scene->build();
-	renderer->render();
+	renderer->render(scene);
 }
 
 void doTilt(int);

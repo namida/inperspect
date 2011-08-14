@@ -1,9 +1,9 @@
 #include "geometry.h"
+#include "scene.h"
 class Renderer {
 	public:
 		float ypoz, zpoz;
-		Point pointsX[10], pointsY[10], pointsZ[10];
 		Renderer();
-		void render();
+		void render(Scene*);
 		void animate();
 };
