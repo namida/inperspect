@@ -16,6 +16,11 @@ void lighten(IplImage *img) {
 Scene::Scene() : rgb(NULL), depth(NULL) {
 	cvNamedWindow("depth");
 	cvNamedWindow("rgb");
+	cloud.push_back(new ColorPoint(0, 0, 1024, 1, 0, 0));
+	cloud.push_back(new ColorPoint(639, 0, 1024, 1, 1, 0));
+	cloud.push_back(new ColorPoint(639, 479, 1024, 0, 1, 0));
+	cloud.push_back(new ColorPoint(0, 479, 1024, 0, 1, 1));
+	cloud.push_back(new ColorPoint(319, 239, 1024, 1, 0, 1));
 }
 
 void Scene::fetchImage() {
